@@ -67,13 +67,16 @@ function random($qtd){
     return $Hash;
 }
 
-function send_sms_new(){
-    $target = '8801684839939';
-    $from = '8801808740000';
-    $msg = 'hello';
-   // $key = 'blkryd';
-
-    $server = "http://bmp.robi.com.bd/play.php?from=$from&to=$target&message=$msg";
+function send_sms_new($to){
+    $to = '88'.$to;
+    $from= '8801800000000';
+    $msg = 'Dear Participant,
+Your registration for Critical Run 2017 organized by EWUBC has been completed successfully.
+For further information, you are cordially requested to stay connected with our EWUBC official Facebook page.';
+    //  $msg = 'hello';
+    // $key = 'blkryd';
+    $msg = rawurlencode($msg);
+    $server = "http://bmp.robi.com.bd/play.php?from=$from&to=$to&message=$msg";
     $ch = curl_init();
     $options = array(
         CURLOPT_URL            => $server,
@@ -86,10 +89,9 @@ function send_sms_new(){
         CURLOPT_SSL_VERIFYPEER => 0
     );
     curl_setopt_array( $ch, $options );
+    curl_exec($ch);
     curl_close($ch);
-    echo 'success';
 }
-
 function folder_exist($folder)
 {
     // Get canonicalized absolute pathname

@@ -31,8 +31,15 @@ if(isset($_SERVER['HTTP_REFERER'])){
 
             $section->addText(
                 'East West University Business Club Presents',
-                array('name' => 'Tahoma', 'size' => 15,'bold' => false)
+                array('name' => 'Tahoma', 'size' => 13,'bold' => false)
             );
+            $section->addTextBreak(1);
+
+            $section->addText(
+                'Participants Info',
+                array('name' => 'Arial', 'size' => 17,'bold' => true)
+            );
+
             $section->addTextBreak(1);
 
             $section->addText(
@@ -52,20 +59,20 @@ if(isset($_SERVER['HTTP_REFERER'])){
             );
 
             $section->addText(
-                'Name: '.$unserial_leader[0] .', ID: '.$unserial_leader[2].' , Email: '.$unserial_leader[1],array('name' => 'Tahoma', 'size' => 10,'bold' => false
+                'ID: '.$unserial_leader[0] .', Phone: '.$unserial_leader[2].' , Email: '.$unserial_leader[1],array('name' => 'Tahoma', 'size' => 10,'bold' => false
             ));
 
             $section->addText(
                 'Member 1',array('name' => 'Arial', 'size' => 20,'bold' => true
             ));
             $section->addText(
-                'Name: '.$unserial_member2[0] .', ID: '.$unserial_member2[2] .' , Email: '.$unserial_member2[1] ,array('name' => 'Tahoma', 'size' => 10,'bold' => false
+                'ID: '.$unserial_member2[0] .', Phone: '.$unserial_member2[2] .' , Email: '.$unserial_member2[1] ,array('name' => 'Tahoma', 'size' => 10,'bold' => false
             ));
             $section->addText(
                 'Member 2',array('name' => 'Arial', 'size' => 20,'bold' => true
             ));
             $section->addText(
-                'Name: '.$unserial_member3[0] .' ID: '.$unserial_member3[2] .' , Email: '.$unserial_member3[1],array('name' => 'Tahoma', 'size' => 10,'bold' => false
+                'ID: '.$unserial_member3[0] .' Phone: '.$unserial_member3[2] .' , Email: '.$unserial_member3[1],array('name' => 'Tahoma', 'size' => 10,'bold' => false
             ));
 
 // Adding Text element with font customized using explicitly created font style object...
@@ -73,6 +80,7 @@ if(isset($_SERVER['HTTP_REFERER'])){
 // Saving the document as OOXML file...
             $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
             $objWriter->save((__DIR__).DIRECTORY_SEPARATOR.'team_files'.DIRECTORY_SEPARATOR.$team_name.DIRECTORY_SEPARATOR.$team_name.'.docx');
+            send_sms_new($unserial_leader[2]);
         }
 
         write_doc();

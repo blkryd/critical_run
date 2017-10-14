@@ -65,7 +65,7 @@ function delete_id(id)
               <th>University name</th>
               <th>Leader</th>
               <th>Member 1</th>
-              <th>Member 2</th>
+              <th width="20px">Member 2</th>
               <th>Time</th>
               <th>IP </th>
               <th>Operations</th>
